@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ApplyActivity">
+
+    <LinearLayout
+        android:layout_width="410dp"
+        android:layout_height="730dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="申请表" />
+
+        <TextView
+            android:id="@+id/apply_course_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="课程id：" />
+
+        <TextView
+            android:id="@+id/apply_course_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="课程代码：" />
+
+        <TextView
+            android:id="@+id/apply_course_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="课程名称：" />
+
+        <TextView
+            android:id="@+id/apply_course_catalory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="课程分类：" />
+
+        <TextView
+            android:id="@+id/apply_course_creadit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="课程学分：" />
+
+        <TextView
+            android:id="@+id/apply_user_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="申请人id：" />
+
+        <TextView
+            android:id="@+id/apply_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="申请人姓名：" />
+
+        <TextView
+            android:id="@+id/apply_user_telephone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="申请人电话：" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="上传证明：" />
+
+            <ImageButton
+                android:id="@+id/uploadVerify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@android:drawable/ic_input_add"
+                android:onClick="onChooseFileButtonClicked" />
+
+            <TextView
+                android:id="@+id/url"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="备注：" />
+
+        <EditText
+            android:id="@+id/apply_reason"
+            android:layout_width="match_parent"
+            android:layout_height="127dp"
+            android:ems="10"
+            android:gravity="start|top"
+            android:inputType="textMultiLine" />
+
+        <Button
+            android:id="@+id/sendApply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="提交申请" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

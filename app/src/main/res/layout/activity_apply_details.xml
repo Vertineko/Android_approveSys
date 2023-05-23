@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ApplyDetailsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="申请表状态" />
+
+        <TextView
+            android:id="@+id/details_courseName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="课程名称" />
+
+        <TextView
+            android:id="@+id/details_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="当前状态" />
+
+        <TextView
+            android:id="@+id/details_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="老师备注" />
+
+        <Button
+            android:id="@+id/details_configure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="确认" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
