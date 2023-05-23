@@ -81,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                                     //当前登陆学生的id
                                     intent.putExtra("id",id);
                                     startActivity(intent);
+                                    finish();
                                 }else {
                                     Toast.makeText(LoginActivity.this,"登陆失败!",Toast.LENGTH_SHORT).show();
                                 }
@@ -89,6 +90,14 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
+            }
+        });
+
+        findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }

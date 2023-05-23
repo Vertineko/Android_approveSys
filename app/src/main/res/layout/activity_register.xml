@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AllApply">
+    tools:context=".RegisterActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="-41dp"
-        tools:layout_editor_absoluteY="69dp">
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="学生注册" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,17 +25,15 @@
                 android:layout_width="6dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="课程名" />
+                android:text="姓名：" />
 
             <EditText
-                android:id="@+id/stu_search_courseName"
+                android:id="@+id/register_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:visibility="visible"
-                tools:visibility="visible" />
+                android:inputType="textPersonName" />
         </LinearLayout>
 
         <LinearLayout
@@ -44,72 +45,62 @@
                 android:layout_width="6dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="状态" />
+                android:text="电话：" />
 
             <EditText
-                android:id="@+id/stu_search_ApplyStatus"
+                android:id="@+id/register_tele"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:visibility="visible"
-                tools:visibility="visible" />
+                android:inputType="number" />
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/stu_search"
-                android:layout_width="203dp"
-                android:layout_height="wrap_content"
-                android:text="搜索" />
-
-            <Button
-                android:id="@+id/stu_reset"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="重置" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/beforePage"
-                android:layout_width="76dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="上一页" />
 
             <TextView
-                android:id="@+id/PageInfo"
+                android:layout_width="6dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="账号：" />
+
+            <EditText
+                android:id="@+id/register_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextView" />
-
-            <Button
-                android:id="@+id/nextPage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="下一页" />
-
+                android:ems="10"
+                android:inputType="textPersonName" />
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/AllApply"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="484dp"
-            android:layout_weight="1" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="6dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="密码：" />
+
+            <EditText
+                android:id="@+id/register_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPassword" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="注册" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,8 @@ public class WelcomeActivity extends AppCompatActivity {
         findViewById(R.id.tchlogin).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(WelcomeActivity.this,TchLoginActivity.class);
+                startActivity(intent);
             }
         });
     }

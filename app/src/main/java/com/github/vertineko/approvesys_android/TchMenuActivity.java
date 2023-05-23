@@ -7,46 +7,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-public class StuMenuActivity extends AppCompatActivity {
+public class TchMenuActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        String teacher_id = getIntent().getStringExtra("teacher_id");
+        String teacher_role = getIntent().getStringExtra("teacher_role");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stu_menu);
-
-
-        String id = getIntent().getStringExtra("id");
-
-
-        findViewById(R.id.button3).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(StuMenuActivity.this,SelectCourseActivity.class);
-                intent.putExtra("id",id);
-                startActivity(intent);
-            }
-        });
-
-        findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(StuMenuActivity.this,ApplyList.class);
-                intent.putExtra("id",id);
-                startActivity(intent);
-            }
-        });
-
-        findViewById(R.id.button5).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(StuMenuActivity.this,AllApply.class);
-                intent.putExtra("id",id);
-                startActivity(intent);
-            }
-        });
+        setContentView(R.layout.activity_tch_menu);
     }
+
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -69,13 +44,13 @@ public class StuMenuActivity extends AppCompatActivity {
                 return true;
             case R.id.exit:
                 // TODO: 退出登录
-                Intent intent = new Intent(StuMenuActivity.this,LoginActivity.class);
+                Intent intent = new Intent(TchMenuActivity.this,LoginActivity.class);
                 startActivity(intent);
                 finish();
                 return true;
             case R.id.exchange:
                 // TODO: 切换账号
-                Intent intent1 = new Intent(StuMenuActivity.this,WelcomeActivity.class);
+                Intent intent1 = new Intent(TchMenuActivity.this,WelcomeActivity.class);
                 startActivity(intent1);
                 finish();
                 return true;

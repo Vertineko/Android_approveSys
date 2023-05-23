@@ -1,10 +1,15 @@
 package com.github.vertineko.approvesys_android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +33,8 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class AllApply extends AppCompatActivity {
+    private EditText name;
+    private EditText status;
     private TextView PageInfo;
     private ListView listView;
     private int pageNum = 3;
@@ -38,6 +45,8 @@ public class AllApply extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_apply);
         String user_id = getIntent().getStringExtra("id");
+        name = findViewById(R.id.stu_search_courseName);
+        status = findViewById(R.id.stu_search_ApplyStatus);
 
 
         PageInfo = findViewById(R.id.PageInfo);
@@ -89,7 +98,20 @@ public class AllApply extends AppCompatActivity {
                 pageNum = 3;
                 pageNow = 1;
                 PageInfo.setText("当前" + pageNow + "/共" + pageAll + "页");
+                PageInfo.setVisibility(View.VISIBLE);
+                findViewById(R.id.nextPage).setVisibility(View.VISIBLE);
+                findViewById(R.id.beforePage).setVisibility(View.VISIBLE);
                 showApply(ApplyAdapter,user_id,pageNum+"",pageNow+"");
+            }
+        });
+
+        findViewById(R.id.stu_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PageInfo.setVisibility(View.INVISIBLE);
+                findViewById(R.id.nextPage).setVisibility(View.INVISIBLE);
+                findViewById(R.id.beforePage).setVisibility(View.INVISIBLE);
+                search(ApplyAdapter,name.getText().toString(),status.getText().toString(),user_id);
             }
         });
     }
@@ -181,6 +203,82 @@ public class AllApply extends AppCompatActivity {
     }
 
     protected void search(ArrayAdapter<Apply> ApplyAdapter,String name,String status,String user_id){
+        ApplyAdapter.clear();
+        OkHttpClient okHttpClient = new OkHttpClient();
+        RequestBody requestBody = new FormBody.Builder()
+                .add("user_id",user_id)
+                .add("name",name)
+                .add("status",status)
+                .build();
+        Request request = new Request.Builder()
+                .url(DefaultUrl.url + "/StuSeacherServlet")
+                .post(requestBody)
+                .build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(AllApply.this, "Network Error!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
 
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String message = response.body().string();
+                JSONObject jsonObject = JSON.parseObject(message);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(jsonObject.get("flag").toString().equals("true")){
+                            List<Apply> applies = JSON.parseArray(JSON.toJSONString(jsonObject.get("applies")),Apply.class);
+                            for (Apply apply : applies){
+                                ApplyAdapter.add(apply);
+                            }
+                        }else {
+                            Toast.makeText(AllApply.this, "无搜索结果，请更换关键字后再试一次！", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.overflow_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.changeThemes:
+                // TODO: 更换主题
+                int nightMode = AppCompatDelegate.getDefaultNightMode();
+                if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+                    // 当前处于深色模式，执行相应的操作
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                } else {
+                    // 当前处于浅色模式，执行相应的操作
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
+                return true;
+            case R.id.exit:
+                // TODO: 退出登录
+                Intent intent = new Intent(AllApply.this,LoginActivity.class);
+                startActivity(intent);
+                finish();
+                return true;
+            case R.id.exchange:
+                // TODO: 切换账号
+                Intent intent1 = new Intent(AllApply.this,WelcomeActivity.class);
+                startActivity(intent1);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
