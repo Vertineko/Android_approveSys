@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -75,7 +76,7 @@ public class TchLoginActivity extends AppCompatActivity {
                         if(jsonObject.get("flag").toString().equals("true")){
                             Teacher teacher = JSON.parseObject(JSON.toJSONString(jsonObject.get("teacher")),Teacher.class);
                             Intent intent = new Intent(TchLoginActivity.this,TchMenuActivity.class);
-                            intent.putExtra("teacher_id",teacher.getId());
+                            intent.putExtra("teacher_id",teacher.getId()+"");
                             intent.putExtra("teacher_role",teacher.getRole().toString());
                             startActivity(intent);
                             finish();

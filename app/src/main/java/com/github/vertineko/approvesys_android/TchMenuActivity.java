@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class TchMenuActivity extends AppCompatActivity {
 
@@ -17,6 +18,26 @@ public class TchMenuActivity extends AppCompatActivity {
         String teacher_role = getIntent().getStringExtra("teacher_role");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tch_menu);
+
+        findViewById(R.id.menu_approve).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TchMenuActivity.this,ApproveActivity.class);
+                intent.putExtra("teacher_id",teacher_id);
+                intent.putExtra("teacher_role",teacher_role);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.menu_allapprove).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TchMenuActivity.this,AllApproveActivity.class);
+                intent.putExtra("teacher_id",teacher_id);
+                intent.putExtra("teacher_role",teacher_role);
+                startActivity(intent);
+            }
+        });
     }
 
 
